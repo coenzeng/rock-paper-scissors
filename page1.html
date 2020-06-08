@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Page 1</title>
+	
+	<link rel="stylesheet" type="text/css" href="css/browser_reset.css"> 
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+
+
+	<script>
+		
+		function pageChange() {
+			
+		var outName = document.displayThings.uname.value; //taking the information entered into the name textbox and storing it in the variable outName
+		var outLevel = document.displayThings.level.value; //taking the information selected in the dropdown menu and storing it in the variable outLevel
+			alert(outLevel);
+		sessionStorage.setItem("uname", outName); 
+		sessionStorage.setItem("level", outLevel); //these two session storages are setting the item so that they can be accessed in the next page. When the "key" is called, the variable that stores the user's information will appear
+		
+		location = "rock_paper_scissors.html"; //This is leads the user to the main page
+		return false;
+		}
+	</script>
+</head>
+
+<body>
+	
+		
+	<form  name="displayThings" method="post" onSubmit="return pageChange()">
+		
+		<!-- submitting this form will trigger the pageChange function-->
+	  <div id="container_1"> 
+		<h1>Rock Paper Scissors</h1>
+		<h2>The rules of the game are simple:</h2>
+		<img src="images/rules.png" width="350" alt="rules of rock paper scissors">
+		  
+		<h2>Select your difficulty:</h2>
+		  
+		  <div>
+		    <select class="select-css" name="level">
+				<option value="easy">Easy</option>
+				<option value="medium">Medium</option>
+				<option value="hard">Hard</option>
+			</select>
+			  <!--This is a dropdown menu for the difficulties of the game-->
+		  </div>
+		  <h4>On easy, your oppenent has probably never played rock paper scissors before. On medium, your oppenent has a fair amount of experience. On hard, the oppenent may or may not be watching you through your computer camera.</h4>
+		<h2>Enter your name to begin:</h2>
+	<div>
+    	
+        
+       <label for="myname"></label>
+       <input type="text" id="myname" name="uname"/>
+	   <!--This is a text box where user's can type in their name-->
+    </div>
+
+	  <button type="submit" value="Submit" class="btn">start</button> <!--This is the submit button the user presses when done entering information, and will trigger the returnPage function*/
+           
+    </div>
+			
+	
+	</form>
+	
+	
+</body>
+</html>
+
+
+
+

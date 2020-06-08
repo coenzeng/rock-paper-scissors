@@ -1,0 +1,147 @@
+/*CSS doc*/
+
+body {
+	background-image:url("../images/pinkbackground6.jpg");
+	background-size: 100%;
+	text-align: center;
+}
+h1 {
+	color:#EDEDED;
+	font-size: 35pt; 
+	font-weight: bold; 
+	text-transform: uppercase; 
+	text-align: center;
+	margin-top: 10px;
+	
+}
+
+h2 {
+	font-weight: bold;
+	margin: 15px;
+	color:#EDEDED;
+	text-align: center;
+	font-size: 20pt;
+}
+
+h3 {
+	color:#EDEDED;
+	font-size: 15pt;
+	text-align: center;
+	margin-top: 15px;
+}
+
+h4 {
+	color:#EDEDED;
+	font-size: 14pt;
+	text-align: center;
+	margin-right: 10px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	
+}
+
+h5 {
+	font-size: 12pt;
+	text-align: center;	
+	margin-top: 15px;
+}
+
+table {
+	width: 100%;
+	margin-top: 10px;
+}
+
+.tableCenter {
+	margin-left:auto; 
+	margin-right:auto;
+}
+
+td, th {
+	font-size: 17px;
+	border: 5px double #FF77D8;
+	padding: 15px;
+	background-color: #F4F4F4;
+}
+
+th {
+	font-weight: bold;
+	width: 50%;
+}
+
+.imageCenter {
+	align-content: center;
+}
+
+.btn {
+  background-color: #95C7F5;
+  color: white;
+  padding: 15px 1px;
+  border: none;
+  cursor: pointer; /*When the cursor goes anything with this class it will become a pointer, indicating that it can be clicked */
+  width: 20%;
+  opacity: 0.90; /*Changes the transparency of the background colour */
+  font-size: 17pt; 
+  font-weight: 600;
+  text-transform: uppercase; 
+}
+
+ input[type=text],.select-css{ /*This changes the input where the type is text (this is generalized as a [attribute=value] selector that only selects the value specified), so just the box where the user enters their name. The class select-css refers to the dropdown menu of the difficulty.*/
+  font-size: 15px;
+  font-weight: 700;
+  width: 50%;
+  padding: 13px;
+  margin: 5px 0 30px 0;
+  border: none;
+  background: #f1f1f1;
+  border-radius: .5em; /*rounds the border's edges*/
+ 
+} /*Source:
+		https://www.w3schools.com/css/css_form.asp
+		https://www.w3schools.com/css/css_attribute_selectors.asp
+*/
+#container_1, #container_2{
+	
+	background-color:#7282FF;
+	width: 800px;
+	margin-left: auto; 
+	margin-right: auto;
+	padding: 5px 30px 20px 30px;
+}
+
+a:link {
+	color: #FF77D8;
+	text-decoration: underline;
+}
+a:hover {
+	color: #FFFFFF;
+}
+
+div {
+	
+	margin-top: 20px;
+	align-content: center;
+}
+
+.btn:hover {
+  opacity: 100;
+}
+
+nav {
+	text-align: center;
+	margin: 50px auto 50px auto;
+}
+nav ul li {
+	display: inline;
+	margin: 0px 10px 0px 10px;
+}
+
+.choice {
+	cursor: pointer;
+	transition: .15s; 
+	} 
+	/*it takes .15 seconds to do the transformation*/
+.choice:hover { 
+	transform: scale(1.2); 
+	} 
+	/*while hovering, the image will become 1.2 times the size of the original image*/
+/*Source: https://css-tricks.com/snippets/css/scale-on-hover-with-webkit-transition/ */

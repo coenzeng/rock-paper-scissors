@@ -1,0 +1,242 @@
+ <!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8"/>
+    <title>Rock Paper Scissors: The Finale</title>
+
+<link rel="stylesheet" type="text/css" href="css/browser_reset.css"> 
+<link rel="stylesheet" type="text/css" href="css/main.css">
+
+</head>
+	
+<body id="main">
+
+<form name="game" method="post" onClick="return false;"> <!--return false ensures that the page doesn't refresh after clicking on an option-->
+	<div id="container_1"> 
+	<label for="playerInput"><h1>Rock Paper Scissors</h1></label>
+	
+		<h2>Choose your shape:</h2>
+		<nav>
+			<ul>
+				<li> <input type="image" class="choice" width="100" height="100" alt="rock"
+				 src="images/rock.png" onclick="rock();"> </li>
+				<li> <input type="image" class="choice" width="100" height="100" alt="paper"
+				 src="images/paper.png" onclick="paper();"></li>
+				<li> <input type="image" class="choice" width="100" height="100" alt="scissors"
+				 src="images/scissors.png" onclick="scissors();"></li>
+				 
+				 <!--Here three images are shown inline. When an image is clicked, the respective function of that choice will run. For example, clicking rock will go to the rock function.-->
+			</ul>
+		</nav>
+        
+        <h2 id="message1"></h2> <!--displays whether it's a win, loss, or tie-->
+        
+		<table class="tableCenter" style="width:50%">
+			<tr>
+				<th id="message1.9"></th> <!--Display's the user's name-->
+				<th>Opponent</th>
+			</tr>	
+			<tr>
+				<td id="message2"></td> <!--This will display the user's score-->
+				<td id="message2.1"></td> <!--This will display the computer's score-->
+			</tr>
+			</table>
+		
+       	<h3 id="message3"></h3> <!--will state what the oppenent played-->
+		
+	</div>
+	
+	<div id="container_2">
+		
+		<nav>
+			<ul>
+				<li> <img src="images/stat_icon.png" width="100" height="100" alt="stat icon" style="float: left;"></li>
+				<li> <h1 style="text-align: left;">Stats</h1></li>
+				
+			</ul>
+		</nav>
+		<table border="1" class="tableCenter">
+			 <tr>
+				<th>Wins/Losses/Ties</th>
+				<td id="message4"></td> <!--Will display the variables userScore/cpuScore/tieGame. All of what the following id's are holding can be viewed at the bottom of the code-->
+			</tr>
+			<tr>
+				<th>Winrate</th>
+				<td id="message5"></td>	
+			</tr>
+			<tr>
+				<th>Total number of games played</th>
+				<td id="message6"></td>	
+			</tr>
+			<tr>
+				<th>Number of time rock used</th>
+				<td id="message7"></td>	
+			</tr>
+			<tr>
+				<th>Number of time paper used</th>
+				<td id="message8"></td>	
+			</tr>
+			<tr>
+				<th>Number of time scissors used</th>
+				<td id="message9"></td>	
+			</tr>
+		
+ 		</table>
+        
+        <a href="page1.html" style="color: #111111;"><h5>Back to home screen</h5></a> <!--This link will lead back to the home screen-->
+	</div>
+</form>
+
+
+</body>
+
+
+<script>
+
+		
+		var userScore = 0;
+		var cpuScore = 0;
+		var tieGame = 0;
+		var clickrock = 0;
+		var clickpaper = 0;
+		var clickscissors = 0;
+		
+		<!--all variables start at zero as nothing has been done yet-->
+		
+		var userName = sessionStorage.getItem("uname");
+		var userLevel = sessionStorage.getItem("level");
+			
+		/*These two session storages call the user's name and level of difficulty that was entered on the previous page.*/
+		
+		document.getElementById("message1.9").innerHTML = userName; // This displays the user's name in the id 1.9. It's the only one at the front of the code because it's not used later in the code*/
+
+	function cpu(){
+	
+	/*This function is the random number generator that determines whether the player wins, loses, or ties. It does not determine what the computer plays, that is determined later in their respective functions.*/
+	
+	if (userLevel == "easy"){ //here the userLevel will change what the possible number's generated are
+		var randomNumber = Math.floor(Math.random() * 4);
+		
+		/*The possible numbers generated are 0, 1, 2, or 3.*/
+		
+		} else if (userLevel == "medium"){
+		var randomNumber = Math.floor(Math.random() * 3) + 1;
+			
+		/*Possible numbers are 1, 2, 3*/
+		} else if (userLevel == "hard"){
+		var randomNumber = Math.floor(Math.random() * 4) + 1;
+		
+		/*Possible numbers are 1, 2, 3, 4.*/
+		/*	1 = lose
+			2 = tie
+			3= win
+		
+		On easy, 0 is another number that is an instant win. On hard, 4 is a number that is instant loss.*/ 
+			}
+		return randomNumber; /*returns the number back to the function that called this function*/
+	}
+	
+	function rock(){
+		
+		var number = cpu(); //calls the function cpu, and this function will return with a random number
+			if (number == 1 || number == 4) { //if the number is 1 or 4 this if statement will be true
+				var output = "paper";
+		
+			} else if (number == 2) {
+			
+				var output = "rock";
+				
+			} else if (number == 3 || number == 0) {
+				var output = "scissors";
+			}
+		
+		/*The variable output stores what the computer plays, and will change depending on if the user wins/loses/ties*/
+		clickrock++; /*a counter for how many times rock is clicked*/
+					document.getElementById("message7").innerHTML =clickrock; /*displays this counter where the id message7 is located*/
+		result(number, output); /*the result function is called, and the number and output is sent because it will be used there. The other two functions (paper and scissors) do this as well.*/
+	}
+	
+	function paper(){
+		var number = cpu();
+			if (number == 1 || number == 4) {
+				var output = "scissors";
+		
+			} else if (number == 2) {
+			
+				var output = "paper";
+				
+			} else if (number == 3 || number == 0) {
+				var output = "rock";
+			}
+		
+		clickpaper++; /*counter for how many times paper is clicked*/
+					document.getElementById("message8").innerHTML =clickpaper; /*displays this counter where the id message8 is located*/
+		
+		result(number, output);
+	}
+	
+	function scissors(){
+		var number = cpu();
+			if (number == 1 || number == 4) {
+				var output = "rock";
+		
+			} else if (number == 2) {
+			
+				var output = "scissors";
+				
+			} else if (number == 3 || number == 0) {
+				var output = "paper";
+			}
+		
+		clickscissors++; /*counter for how many times paper is clicked*/
+					document.getElementById("message9").innerHTML =clickscissors; /*displays this counter where the id message9 is located*/
+		result(number, output);
+	}
+	
+	
+	function result(Nnumber, Noutput){
+	
+		if (Nnumber == 1 || Nnumber == 4) {
+			document.getElementById("message1").innerHTML = "You lost!"; /*Here it will display if the user won, lost, or tied in the id message1*/
+				cpuScore++; /*a counter for points of the computer*/
+				
+		} else if (Nnumber == 2) {
+			document.getElementById("message1").innerHTML = "You tied!";
+			tieGame++; /*a counter for tie games*/
+		
+				
+		} else if (Nnumber == 3 || Nnumber == 0) {
+			document.getElementById("message1").innerHTML = "You won!";
+			userScore++; /*a counter for the user's points*/
+
+		} 
+			var winrate = ((userScore/(userScore + cpuScore)) * 100).toFixed(2); 
+			
+			/*winrate is calculated by the user's score divided by total plays (not counting tie games). toFixed will round to 2 decimal places*/
+			
+			
+			var numberofGames = userScore + cpuScore + tieGame; /*All the different outcomes of the game added together equals total games played*/
+			
+			document.getElementById("message2").innerHTML =userScore;
+			document.getElementById("message2.1").innerHTML =cpuScore;
+			document.getElementById("message3").innerHTML ="Your opponent used " + Noutput + ".";
+			document.getElementById("message4").innerHTML =userScore + "/" + cpuScore + "/" + tieGame;
+			document.getElementById("message5").innerHTML =winrate + "%";
+			document.getElementById("message6").innerHTML =numberofGames;
+		
+			//This is where all the information is being displayed in their respective id's. Whereever the id's are placed is where this information will go.*/
+	return false;
+	
+}
+
+</script>
+
+</html>
+
+
+
+
+
